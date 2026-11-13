@@ -1,9 +1,5 @@
 node_modules/
-.env
-.env.*
+.env*
 !.env.example
 .vercel/
 .neon
-
-.vercel
-.env*
