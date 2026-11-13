@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clinic Booking</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Clinic Booking</h1>
+    <p class="muted">Pick an open slot, enter your details and book.</p>
+  </header>
+
+  <main>
+    <section class="card" id="key-card">
+      <form id="key-form" class="row">
+        <label for="api-key">API key</label>
+        <input id="api-key" type="password" autocomplete="off" placeholder="Paste the API key" required>
+        <button type="submit">Save</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="row between">
+        <h2>Available slots</h2>
+        <div class="row">
+          <label for="provider-filter" class="sr-only">Provider</label>
+          <select id="provider-filter"><option value="">All providers</option></select>
+          <button id="refresh" type="button" class="secondary">Refresh</button>
+        </div>
+      </div>
+      <p id="slots-status" class="muted" role="status"></p>
+      <ul id="slots" class="slots"></ul>
+    </section>
+
+    <section class="card" id="book-card" hidden>
+      <h2>Book <span id="book-slot-label"></span></h2>
+      <form id="book-form">
+        <label>Full name <input id="name" name="name" required maxlength="200" autocomplete="name"></label>
+        <label>Email <input id="email" name="email" type="email" required autocomplete="email"></label>
+        <div class="row">
+          <button type="submit" id="book-btn">Confirm booking</button>
+          <button type="button" id="book-cancel" class="secondary">Back</button>
+        </div>
+        <p id="book-error" class="error" role="alert"></p>
+      </form>
+    </section>
+
+    <section class="card success" id="confirm-card" hidden>
+      <h2>Booking confirmed</h2>
+      <dl id="confirm-details"></dl>
+      <p class="muted">Keep your booking reference to look it up later.</p>
+    </section>
+
+    <section class="card">
+      <h2>Find a booking</h2>
+      <form id="lookup-form" class="row">
+        <label for="lookup-id" class="sr-only">Booking reference</label>
+        <input id="lookup-id" placeholder="Booking reference" required>
+        <button type="submit">Look up</button>
+      </form>
+      <p id="lookup-error" class="error" role="alert"></p>
+      <div id="lookup-result"></div>
+    </section>
+
+    <section class="card">
+      <h2>My bookings</h2>
+      <form id="mine-form" class="row">
+        <label for="mine-email" class="sr-only">Email</label>
+        <input id="mine-email" type="email" placeholder="you@example.com" required>
+        <button type="submit">Show</button>
+      </form>
+      <p id="mine-error" class="error" role="alert"></p>
+      <ul id="mine" class="bookings"></ul>
+      <button id="mine-more" type="button" class="secondary" hidden>Load more</button>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

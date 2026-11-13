@@ -1,0 +1,64 @@
+:root {
+  --bg: #f5f7fa;
+  --card: #fff;
+  --text: #1c2430;
+  --muted: #5b6675;
+  --accent: #0b6e69;
+  --accent-text: #fff;
+  --border: #dde3ea;
+  --error: #b42318;
+  --ok-bg: #ecfdf3;
+  --ok-border: #75c69a;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #11161c; --card: #1a2129; --text: #e6ebf0; --muted: #9aa6b2;
+    --accent: #3cc4bb; --accent-text: #08201f; --border: #2c3640;
+    --error: #ff8a80; --ok-bg: #12291e; --ok-border: #2f7a50;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+header, main { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+header { padding-top: 32px; }
+h1 { margin: 0 0 4px; font-size: 1.8rem; }
+h2 { margin: 0 0 12px; font-size: 1.15rem; }
+.card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 20px; margin: 16px 0;
+}
+.card.success { background: var(--ok-bg); border-color: var(--ok-border); }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.between { justify-content: space-between; }
+.between h2 { margin: 0; }
+label { display: block; margin-bottom: 12px; font-weight: 500; }
+.row label { margin: 0; }
+input, select {
+  font: inherit; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--card); color: var(--text);
+}
+#book-form input { display: block; width: 100%; margin-top: 4px; }
+.row input { flex: 1; min-width: 180px; }
+button {
+  font: inherit; padding: 8px 14px; border-radius: 6px; border: 1px solid var(--accent);
+  background: var(--accent); color: var(--accent-text); cursor: pointer;
+}
+button.secondary { background: transparent; color: var(--accent); }
+button:disabled { opacity: .6; cursor: wait; }
+.muted { color: var(--muted); }
+.error { color: var(--error); min-height: 1.5em; margin: 8px 0 0; }
+.slots, .bookings { list-style: none; margin: 0; padding: 0; }
+.slots li, .bookings li {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  padding: 10px 0; border-top: 1px solid var(--border);
+}
+.slots li:first-child, .bookings li:first-child { border-top: 0; }
+.tag { font-size: .8rem; padding: 2px 8px; border-radius: 99px; border: 1px solid var(--border); color: var(--muted); }
+.tag.confirmed { color: var(--accent); border-color: var(--accent); }
+dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 16px; margin: 0 0 8px; }
+dt { color: var(--muted); }
+dd { margin: 0; word-break: break-all; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
