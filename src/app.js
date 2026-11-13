@@ -26,6 +26,16 @@ const app = express();
 app.disable('x-powered-by');
 app.set('trust proxy', true);
 
+// Treat "//slots" like "/slots" (e.g. a client joining a base URL that ends in "/" with "/slots").
+app.use((req, res, next) => {
+  const q = req.url.indexOf('?');
+  const pathPart = q === -1 ? req.url : req.url.slice(0, q);
+  if (pathPart.includes('//')) {
+    req.url = pathPart.replace(/\/{2,}/g, '/') + (q === -1 ? '' : req.url.slice(q));
+  }
+  next();
+});
+
 // ---------- CORS (lets the page, or any browser tool, call the API) ----------
 app.use((req, res, next) => {
   res.set('Access-Control-Allow-Origin', '*');
